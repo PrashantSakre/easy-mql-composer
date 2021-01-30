@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Home page container -->
+
+<div class="editors-content">
+
+    <!----------     Editor 1 section   ---------->
+    <div class="editor">
+        <div class="row button-row">
+            <div id="button-group1" class="col editor-menu-top">
+                <div class="btn-group btn-group-sm editor-button-group" role="group">
+                    <button class="btn editor-buttons" type="button" title="convert to json form" onclick="convert()"><i class="fas fa-play"></i></button>
+                    <button id="button-clear-editor1" class="btn editor-buttons" title="clear's the editor" onclick="clear()"><i class="fas fa-eraser"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="editor1">COS(1.2)</div>
+    </div>
+
+    <!----------     Editor 2 section   ---------->
+    <div class="editor">
+        <div class="row button-row">
+            <div id="button-group2" class="col editor-menu-top">
+                <div class="btn-group btn-group-sm editor-button-group" role="group">
+                    <button class="btn editor-buttons" onclick="copy()"><i class="fas fa-copy"></i></button>
+                    <button id="indent-button-editor2" class="btn editor-buttons" title="Indent's the editor content" onclick="indent2()"><i class="fas fa-indent"></i></button>
+                    <button id="button-clear-editor2" class="btn editor-buttons" title="clear's the editor" onclick="clear()"><i class="fas fa-eraser"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="editor2">{"boolean": true,"color": "gold","null": null,"number": 123}</div>
+    </div>
+
+</div>
+
+{% endblock content %}
