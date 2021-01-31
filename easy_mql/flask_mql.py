@@ -1,8 +1,7 @@
 import json
 import sys
-import time
-import pyparsing
 
+import pyparsing
 from flask import Flask, render_template, request
 
 sys.path.insert(1, '/Users/prashantsakre/Documents/Developer/easy-mql')
