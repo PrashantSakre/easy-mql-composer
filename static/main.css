@@ -86,9 +86,9 @@ body {
 }
 
 .editor-buttons {
-    background-color: #eeeeee;
     color: #393e46;
     line-height: 1.1rem !important;
+    border-radius: 0 !important;
 }
 
 .editor-buttons:hover {

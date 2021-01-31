@@ -32,7 +32,7 @@ const clearBtnEditor2 = document.getElementById("button-clear-editor2");
 clearBtnEditor2.addEventListener('click', () => {
     // clear's the editor2
     editor2.setValue('');
-    document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #eeeeee; color: #393e46;';
+    document.querySelector('#indent-button-editor2').style.cssText = 'color: #393e46;';
     isIndented = false;
 });
 
@@ -41,7 +41,7 @@ function indent2() {
     if (isIndented) {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue())));
         isIndented = false;
-        document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #eeeeee; color: #393e46;';
+        document.querySelector('#indent-button-editor2').style.cssText = 'color: #393e46;';
     } else {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue()), null, 4));
         isIndented = true;
