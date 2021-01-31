@@ -1,6 +1,7 @@
 import json
 import sys
 import time
+import pyparsing
 
 from flask import Flask, render_template, request
 
@@ -29,16 +30,15 @@ def documentation():
 @app.route("/convert", methods=['POST'])
 def convert():
     exp = Expression()
-    print("body = " + str(request.data))
-
+    res = None
     try:
         res = exp.parse(request.data.decode("utf-8"))
         json_res = json.dumps(res)
-        print(json_res)
-    except Exception as e:
-        json_res = json.dumps('Entered command is incorrect!... error')
-        print(e)
-        print(json_res)
+    except pyparsing.ParseException as e:
+        return json.dumps({
+            "msg": "Error! Entered query is incorrect",
+            "error": f"{e.args[2]} but{str(e)[1:]}"
+        }), 400
     return json_res
 
 

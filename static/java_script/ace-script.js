@@ -58,10 +58,14 @@ function convert() {
         httpRequest = new XMLHttpRequest();
         editor1_body = editor1.getValue();
         httpRequest.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
-                isIndented = true;
-                document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #393e46; color: #f7f7f7;';
+            if (this.readyState == 4 ) {
+                if (this.status == 200) {
+                    editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
+                    isIndented = true;
+                    document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #393e46; color: #f7f7f7;';
+                } else {
+                    editor2.setValue(JSON.parse(this.responseText).error);
+                }
             }
         }
         httpRequest.open('POST', '/convert');
