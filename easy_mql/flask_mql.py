@@ -1,13 +1,10 @@
-import json
-import sys
-
-import pyparsing
+from easy_mql.view import View
 from flask import Flask, render_template, request
 
-sys.path.insert(1, '/Users/prashantsakre/Documents/Developer/easy-mql')
-from easymql.expressions import Expression
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
+
+view = View()
 
 
 @app.route("/")
@@ -26,19 +23,36 @@ def documentation():
     return render_template('documentation.html', title='Docs')
 
 
-@app.route("/convert", methods=['POST'])
-def convert():
-    exp = Expression()
-    res = None
-    try:
-        res = exp.parse(request.data.decode("utf-8"))
-        json_res = json.dumps(res)
-    except pyparsing.ParseException as e:
-        return json.dumps({
-            "msg": "Error! Entered query is incorrect",
-            "error": f"{e.args[2]} but{str(e)[1:]}"
-        }), 400
-    return json_res
+@app.route('/connect', methods=['POST'])
+def connection():
+    url = request.data.decode("utf-8")
+    return view.connect(url)
+
+
+@app.route('/disconnect', methods=['POST'])
+def disconnect():
+    view.disconnect()
+    return '', 204
+
+
+@app.route('/dbs', methods=['GET'])
+def get_dbs():
+    return view.get_dbs()
+
+
+@app.route('/dbs/<dbname>/collections', methods=['GET'])
+def get_collections(dbname):
+    return view.get_collections(dbname)
+
+
+@app.route('/dbs/<dbname>/collections/<col_name>/docs', methods=['GET'])
+def get_docs(dbname, col_name):
+    return view.get_docs(dbname, col_name)
+
+
+@app.route('/dbs/<dbname>/collections/<col_name>/docs/<_id>', methods=['GET'])
+def get_doc(dbname, col_name, _id):
+    return view.get_doc(dbname, col_name, _id)
 
 
 if __name__ == '__main__':

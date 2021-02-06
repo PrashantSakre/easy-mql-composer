@@ -1,6 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
 <!-- Home page container -->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+        <span class="close">&times;</span>
+        <label for="mongo-url">Connect to Mongo local/Atlas</label>
+        <input type="text" class="form-control" id="mongo-url" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
+        <small class="form-text text-muted">We'll never share your credentials with anyone else.</small>
+      <div>
+          <button type="button" class="btn btn-outline-success button-pop-up" onclick="connection()">Connect</button>
+            <img id="loading" src="{{ url_for('static', filename='icon/circles-menu-1.gif') }}" width="20px" style="visibility: hidden;">
+
+      </div>
+
+  </div>
+
+</div>
 
 <div class="editors-content">
 
@@ -11,6 +29,36 @@
                 <div class="btn-group btn-group-sm editor-button-group" role="group">
                     <button class="btn editor-buttons" type="button" title="convert to json form" onclick="convert()"><i class="fas fa-play"></i></button>
                     <button id="button-clear-editor1" class="btn editor-buttons" title="clear's the editor" onclick="clear()"><i class="fas fa-eraser"></i></button>
+                </div>
+                <div class="btn-group btn-group-sm editor-button-group editor-button-group-connect" role="group">
+                    <div class="dropdown">
+                      <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedCollectionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select collection
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
+                          <button class="btn-sm dropdown-item">Empty</button>
+                      </div>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedDbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select db
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
+                          <button class="btn-sm dropdown-item">Empty</button>
+                      </div>
+                    </div>
+
+                    <div class="btn-group">
+<!--                        <button class="btn btn-sm editor-buttons" ></button>-->
+                        <button id="button-connect" type="button" class="btn btn-sm editor-buttons dropdown-toggle dropdown-toggle-split editor-button-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="connect to mongo">
+                            <i class="fas fa-database"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="btn-sm dropdown-item" onclick="connect_button()">Connect</button>
+                            <button class="btn-sm dropdown-item" onclick="disconnect_button()">Disconnect</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
