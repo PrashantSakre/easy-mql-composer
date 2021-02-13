@@ -78,6 +78,12 @@ body {
 .button-pop-up {
     width: max-content;
 }
+
+.error-connection {
+    margin-bottom: 0px;
+    color: red;
+    font-size: 11px;
+}
 /*--- Pop over window section ----*/
 
 /*---  Editor-section   -------*/

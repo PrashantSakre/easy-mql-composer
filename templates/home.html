@@ -10,6 +10,8 @@
       <input type="text" class="form-control" id="mongo-url" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
       <small class="form-text text-muted">We'll never share your credentials with anyone else.</small>
       <div>
+          <div class="modal-error">
+          </div>
           <button type="button" class="btn btn-outline-success button-pop-up" onclick="connection()">Connect</button>
           <img id="loading" src="{{ url_for('static', filename='icon/circles-menu-1.gif') }}" width="20px" style="visibility: hidden;">
       </div>

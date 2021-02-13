@@ -93,6 +93,7 @@ function connect_button() {
 
 // connection to the congo
 function connection() {
+    $('.modal-error').html('');
     document.getElementById("loading").style.visibility = "visible";
     // Ajax http request
     mongoHttpRequest = new XMLHttpRequest();
@@ -113,6 +114,11 @@ function connection() {
                 newHTML.push('<button class="btn-sm dropdown-item" onClick="select_dbs()">' + array[i] + '</button>');
             }
             $(".dropdown-db").html(newHTML.join(""));
+            $('.button-pop-up').text('connect');
+        } else if ( this.status == 500 ) {
+            $('.modal-error').html('<p class="error-connection">Internal server error check your mongo connection</p>');
+            $('.button-pop-up').text('re-connect');
+            $('#loading').css("visibility",'hidden');
         }
     }
     mongoHttpRequest.open('POST', '/connect');

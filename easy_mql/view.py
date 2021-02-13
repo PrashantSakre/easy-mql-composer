@@ -8,8 +8,11 @@ from bson.objectid import ObjectId
 class View:
 
     def connect(self, url):
-        self.connection = pymongo.MongoClient(url)
-        return self.get_dbs()
+        try:
+            self.connection = pymongo.MongoClient(url)
+            return self.get_dbs()
+        except Exception as e:
+            return '', 500
 
     def get_dbs(self):
         return json.dumps(self.connection.list_database_names())
