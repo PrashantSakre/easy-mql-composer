@@ -69,9 +69,6 @@ body {
 /* The Close Button */
 .close {
   color: #aaaaaa;
-  float: right;
-  width: 20px;
-  font-weight: bold;
 }
 
 /* Add Animation to mongo connection modal */
@@ -140,6 +137,10 @@ body {
     border-color: #929aab !important;
     background-color: #929aab;
     border-radius: 5px 5px 0 0;
+}
+
+.editor-dropdown {
+    padding: .1rem 0;
 }
 
 .editor-button-group {

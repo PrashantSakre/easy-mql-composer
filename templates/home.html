@@ -5,8 +5,7 @@
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-      <span class="close">&times;</span>
-      <label for="mongo-url">Connect to Mongo local/Atlas</label>
+      <label for="mongo-url">Connect to Mongo local/Atlas<span class="close">&times;</span></label>
       <input type="text" class="form-control" id="mongo-url" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
       <small class="form-text text-muted">We'll never share your credentials with anyone else.</small>
       <div>
@@ -35,7 +34,7 @@
                       <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedCollectionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select collection
                       </button>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
+                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
                           <button class="btn-sm dropdown-item">Empty</button>
                       </div>
                     </div>
@@ -43,7 +42,7 @@
                       <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedDbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select db
                       </button>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
+                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
                           <button class="btn-sm dropdown-item">Empty</button>
                       </div>
                     </div>
@@ -51,7 +50,7 @@
                         <button id="button-connect" type="button" class="btn btn-sm editor-buttons dropdown-toggle dropdown-toggle-split editor-button-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="connect to mongo">
                             <i class="fas fa-database"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="editor-dropdown dropdown-menu dropdown-menu-right">
                             <button class="btn-sm dropdown-item connect" aria-disabled="true" onclick="connect_button()">Connect</button>
                             <button class="btn-sm dropdown-item disconnect" aria-disabled="true" onclick="disconnect_button()">Disconnect</button>
                         </div>
