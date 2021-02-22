@@ -69,6 +69,7 @@ body {
 /* The Close Button */
 .close {
   color: #aaaaaa;
+  margin-left: 1rem;
 }
 
 /* Add Animation to mongo connection modal */
@@ -90,6 +91,7 @@ body {
 
 .button-pop-up {
     width: max-content;
+    margin-top: 5px;
 }
 
 .error-connection {
@@ -98,6 +100,62 @@ body {
     font-size: 11px;
 }
 /*--- Pop over window section ----*/
+
+/*--- Pop over copy window ----*/
+
+.export-modal-content {
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: .3rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetopexport;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetopexport;
+  animation-duration: 0.4s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  outline: 0;
+}
+
+/* Add Animation to mongo connection modal */
+@-webkit-keyframes animatetopexport {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetopexport {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.export-top-bar {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.copy-button {
+    float: right;
+}
+
+.download-input-field {
+    border-radius: 0;
+    float: right;
+    width: 7rem;
+    height: 2rem;
+}
+
+.export-textarea {
+    width: 100%;
+    font-size: 12px;
+}
+
+/*--- Pop over copy window end ----*/
 
 /*---  Editor-section   -------*/
 
