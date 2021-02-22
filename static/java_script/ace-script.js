@@ -23,7 +23,7 @@ var editor2 = ace.edit("editor2", {
     theme: "ace/theme/tomorrow",
     mode: "ace/mode/json",
     setShowPrintMargin: false,
-
+    readOnly: true
 });
 
 // Clears the editor2 screen
@@ -93,6 +93,7 @@ function connect_button() {
 
 // connection to the congo
 function connection() {
+    $('.modal-error').html('');
     document.getElementById("loading").style.visibility = "visible";
     // Ajax http request
     mongoHttpRequest = new XMLHttpRequest();
@@ -113,6 +114,11 @@ function connection() {
                 newHTML.push('<button class="btn-sm dropdown-item" onClick="select_dbs()">' + array[i] + '</button>');
             }
             $(".dropdown-db").html(newHTML.join(""));
+            $('.button-pop-up').text('connect');
+        } else if ( this.status == 500 ) {
+            $('.modal-error').html('<p class="error-connection">Internal server error check your mongo connection</p>');
+            $('.button-pop-up').text('Re-connect');
+            $('#loading').css("visibility",'hidden');
         }
     }
     mongoHttpRequest.open('POST', '/connect');
@@ -184,3 +190,46 @@ function disconnect_button() {
 $('document').ready(function(){
     $(".disconnect").addClass("disabled");
 });
+
+// Get the export-modal
+var exportModal = document.getElementById("exportModal");
+var exportTextarea = document.querySelector('#export-textarea-content');
+function export_clipboard() {
+    // When the user clicks the button, open the modal
+    exportModal.style.display = "block";
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("export-close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      exportModal.style.display = "none";
+    }
+
+    exportTextarea.value = JSON.stringify(JSON.parse(editor2.getValue()), null, 4);
+}
+
+function copy() {
+    exportTextarea.select();
+    document.execCommand('copy');
+}
+
+
+function download_query() {
+    // On click download button, download the file
+    function download_file(text) {
+        var ele = document.createElement('a');
+        ele.style.display = 'none';
+
+        ele.setAttribute('href', 'data:text/plain;charset-utf-8,' + encodeURIComponent(text));
+
+        ele.setAttribute('download', "query.json");
+        document.body.appendChild(ele);
+
+        ele.click();
+        document.body.removeChild(ele);
+    }
+
+    var text = document.getElementById("export-textarea-content").value;
+    download_file(text);
+}

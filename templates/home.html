@@ -5,15 +5,30 @@
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-      <span class="close">&times;</span>
-      <label for="mongo-url">Connect to Mongo local/Atlas</label>
+      <label for="mongo-url">Connect to Mongo local/Atlas<span class="close">&times;</span></label>
       <input type="text" class="form-control" id="mongo-url" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
       <small class="form-text text-muted">We'll never share your credentials with anyone else.</small>
       <div>
+          <div class="modal-error">
+          </div>
           <button type="button" class="btn btn-outline-success button-pop-up" onclick="connection()">Connect</button>
           <img id="loading" src="{{ url_for('static', filename='icon/circles-menu-1.gif') }}" width="20px" style="visibility: hidden;">
       </div>
   </div>
+</div>
+
+<!-- Export Modal pop-up -->
+<div id="exportModal" class="modal">
+    <!-- Export Modal content -->
+    <div class="export-modal-content">
+        <div class="export-top-bar">
+            <button class="close export-close">&times;</button>
+            <button class="btn editor-buttons copy-button" type="button" title="download" onclick="download_query()"><i class="fas fa-download"></i></button>
+            <button class="btn editor-buttons copy-button" type="button" title="copy to clipboard" onclick="copy()"><i class="fas fa-copy"></i></button>
+            <label for="mongo-url">Export Pipeline</label>
+        </div>
+        <textarea id="export-textarea-content" class="form-control export-textarea" rows="10" readonly></textarea>
+    </div>
 </div>
 
 <div class="editors-content">
@@ -33,7 +48,7 @@
                       <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedCollectionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select collection
                       </button>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
+                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
                           <button class="btn-sm dropdown-item">Empty</button>
                       </div>
                     </div>
@@ -41,7 +56,7 @@
                       <button class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" id="dropdownSelectedDbButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Select db
                       </button>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
+                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
                           <button class="btn-sm dropdown-item">Empty</button>
                       </div>
                     </div>
@@ -49,7 +64,7 @@
                         <button id="button-connect" type="button" class="btn btn-sm editor-buttons dropdown-toggle dropdown-toggle-split editor-button-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="connect to mongo">
                             <i class="fas fa-database"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="editor-dropdown dropdown-menu dropdown-menu-right">
                             <button class="btn-sm dropdown-item connect" aria-disabled="true" onclick="connect_button()">Connect</button>
                             <button class="btn-sm dropdown-item disconnect" aria-disabled="true" onclick="disconnect_button()">Disconnect</button>
                         </div>
@@ -66,9 +81,9 @@
         <div class="row button-row">
             <div id="button-group2" class="col editor-menu-top">
                 <div class="btn-group btn-group-sm editor-button-group" role="group">
-                    <button class="btn editor-buttons" onclick="copy()"><i class="fas fa-copy"></i></button>
                     <button id="indent-button-editor2" class="btn editor-buttons" title="Indent's the editor content" onclick="indent2()"><i class="fas fa-indent"></i></button>
                     <button id="button-clear-editor2" class="btn editor-buttons" title="clear's the editor" onclick="clear()"><i class="fas fa-eraser"></i></button>
+                    <button class="btn editor-buttons" onclick="export_clipboard()" title="export the output"><i class="fas fa-file-export"></i></button>
                 </div>
             </div>
         </div>
@@ -77,4 +92,10 @@
 
 </div>
 
+<!-- Footer - section -->
+<div>
+    <p class="footer-p">
+        <a class="footer-a" href="https://ace.c9.io/" target="_blank" rel="noopener noreferrer">Editors powered by Ace</a>
+    </p>
+</div>
 {% endblock content %}
