@@ -41,14 +41,8 @@ body {
 /*--- Pop over window section ----*/
 .modal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  padding-top: 10%; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  padding: 10% 0 0 0; /* Location of the box */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
@@ -56,14 +50,25 @@ body {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 1.5rem;
   border: 1px solid #888;
   width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
+  -webkit-animation-name: animateconnect;
   -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
+  animation-name: animateconnect;
   animation-duration: 0.4s;
+}
+
+/* Add Animation to mongo connection modal */
+@-webkit-keyframes animateconnect {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animateconnect {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }
 
 /* The Close Button */
@@ -72,36 +77,30 @@ body {
   margin-left: 1rem;
 }
 
-/* Add Animation to mongo connection modal */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
 .close:hover, .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-.button-pop-up {
+.modal-content button {
     width: max-content;
     margin-top: 5px;
 }
 
-.error-connection {
-    margin-bottom: 0px;
+.modal-content img {
+  visibility: hidden;
+  width: 20px;
+}
+
+.modal-error p {
+    margin: 0px;
     color: red;
     font-size: 11px;
 }
 /*--- Pop over window section ----*/
 
-/*--- Pop over copy window ----*/
+/*--- Pop over export section ----*/
 
 .export-modal-content {
   margin: auto;
@@ -135,27 +134,23 @@ body {
 }
 
 .export-top-bar {
-    margin-top: 2px;
-    margin-bottom: 2px;
+  margin: 2px 0;
 }
 
-.copy-button {
+.export-top-bar button {
     float: right;
 }
 
-.download-input-field {
-    border-radius: 0;
-    float: right;
-    width: 7rem;
-    height: 2rem;
+.export-top-bar p {
+  margin: 0;
 }
 
-.export-textarea {
+.export-modal-content textarea {
     width: 100%;
     font-size: 12px;
 }
 
-/*--- Pop over copy window end ----*/
+/*--- Pop over export section end ----*/
 
 /*---  Editor-section   -------*/
 

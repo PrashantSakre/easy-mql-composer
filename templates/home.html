@@ -5,14 +5,14 @@
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
-      <label for="mongo-url">Connect to Mongo local/Atlas<span class="close">&times;</span></label>
-      <input type="text" class="form-control" id="mongo-url" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
+      <label for="mongo-url">Connect to Mongo local/Atlas<span class="close" title="close">&times;</span></label>
+      <input type="text" id="mongo-url" class="form-control" aria-describedby="emailHelp" placeholder="mongodb://Your-url/">
       <small class="form-text text-muted">We'll never share your credentials with anyone else.</small>
       <div>
           <div class="modal-error">
           </div>
-          <button type="button" class="btn btn-outline-success button-pop-up" onclick="connection()">Connect</button>
-          <img id="loading" src="{{ url_for('static', filename='icon/circles-menu-1.gif') }}" width="20px" style="visibility: hidden;">
+          <button type="button" class="btn btn-sm btn-outline-success" onclick="connection()">Connect</button>
+          <img id="loading" src="{{ url_for('static', filename='icon/circles-menu-1.gif') }}">
       </div>
   </div>
 </div>
@@ -22,12 +22,12 @@
     <!-- Export Modal content -->
     <div class="export-modal-content">
         <div class="export-top-bar">
-            <button class="close export-close">&times;</button>
-            <button class="btn editor-buttons copy-button" type="button" title="download" onclick="download_query()"><i class="fas fa-download"></i></button>
-            <button class="btn editor-buttons copy-button" type="button" title="copy to clipboard" onclick="copy()"><i class="fas fa-copy"></i></button>
-            <label for="mongo-url">Export Pipeline</label>
+            <span class="close export-close" title="close">&times;</span>
+            <button class="btn editor-buttons" type="button" title="Download in json format" onclick="download_query()"><i class="fas fa-download"></i></button>
+            <button class="btn editor-buttons" type="button" title="copy to clipboard" onclick="copy()"><i class="fas fa-copy"></i></button>
+            <p>Export Pipeline</p>
         </div>
-        <textarea id="export-textarea-content" class="form-control export-textarea" rows="10" readonly></textarea>
+        <textarea id="export-textarea-content" class="form-control" rows="10" readonly></textarea>
     </div>
 </div>
 
