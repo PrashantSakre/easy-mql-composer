@@ -38,7 +38,7 @@ body {
 }
 /*---  header-section-end ----*/
 
-/*--- Pop over window section ----*/
+/*--- Pop over mongo connection window section ----*/
 .modal {
   display: none; /* Hidden by default */
   padding: 10% 0 0 0; /* Location of the box */
@@ -50,7 +50,7 @@ body {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 1.5rem;
+  padding: 1.4rem;
   border: 1px solid #888;
   width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -98,7 +98,7 @@ body {
     color: red;
     font-size: 11px;
 }
-/*--- Pop over window section ----*/
+/*--- Pop over mongo connection window section ----*/
 
 /*--- Pop over export section ----*/
 
@@ -155,18 +155,14 @@ body {
 /*---  Editor-section   -------*/
 
 #editor1, #editor2 {
-  /* width: 100%; */
   flex: 1 1 auto;
   line-height: 1.5;
   border: 1px solid #d1d5da;
-  border-top: none;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-radius: 0 0 4px 4px;
 }
 
-.editors-content {
+.editors {
   display: flex;
-  /* height: 92%; */
   flex: 1;
   width: 100%;
   padding: 5px 5px 0 5px;
@@ -181,15 +177,14 @@ body {
   min-width: 0px;
 }
 
-.button-row {
-    margin-right: 0px;
-    margin-left: 0px;
+.editor .row {
+  margin: 0;
 }
 
 .editor-menu-top {
     border-color: #929aab !important;
     background-color: #929aab;
-    border-radius: 5px 5px 0 0;
+    border-radius: 4px 4px 0 0;
 }
 
 .editor-dropdown {
@@ -222,12 +217,12 @@ body {
 /*---  Editor-section-end   -------*/
 
 /* Footer-section */
-.footer-p {
+.footer p {
     text-align: end;
     margin: 0 1% 0 0;
-    padding-bottom: .1rem;
+    padding: 0 0 .1rem 0;
 }
 
-.footer-a {
+.footer a {
     font-size: 11px;
 }
