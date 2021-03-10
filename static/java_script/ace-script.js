@@ -32,25 +32,27 @@ const clearBtnEditor2 = document.getElementById("button-clear-editor2");
 clearBtnEditor2.addEventListener('click', () => {
     // clear's the editor2
     editor2.setValue('');
-    document.querySelector('#indent-button-editor2').style.cssText = 'color: #393e46;';
+    indent_editor2_btn.style.cssText = 'color: #393e46;';
     isIndented = false;
 });
 
 // function to indent editor2
+const indent_editor2_btn = document.querySelector('#indent-button-editor2');
+
 function indent2() {
     if (isIndented) {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue())));
         isIndented = false;
-        document.querySelector('#indent-button-editor2').style.cssText = 'color: #393e46;';
+        indent_editor2_btn.style.cssText = 'color: #393e46;';
     } else {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue()), null, 4));
         isIndented = true;
-        document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #393e46; color: #f7f7f7;';
+        indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
     }
 }
 
 
-// function to convert to json
+// Easy-MQL query converter
 function convert() {
     // check for minimum two character available
     if (editor1.getValue().length >= 2) {
@@ -62,7 +64,7 @@ function convert() {
                 if (this.status == 200) {
                     editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
                     isIndented = true;
-                    document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #393e46; color: #f7f7f7;';
+                    indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
                 } else {
                     editor2.setValue(JSON.parse(this.responseText).error);
                 }
@@ -76,7 +78,7 @@ function convert() {
 }
 
 // Get the modal
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("connectModal");
 
 function connect_button() {
     // When the user clicks the button, open the modal
@@ -91,8 +93,10 @@ function connect_button() {
     }
 }
 
-// connection to the congo
-function connection() {
+// connection to the mongo
+const connect_mongo = document.getElementById("connect_mongo");
+
+connect_mongo.addEventListener('click', () => {
     $('.modal-error').html('');
     document.getElementById("loading").style.visibility = "visible";
     // Ajax http request
@@ -113,17 +117,17 @@ function connection() {
             for (var i = 0; i < array.length; i++) {
                 newHTML.push('<button class="btn-sm dropdown-item" onClick="select_dbs()">' + array[i] + '</button>');
             }
-            $(".dropdown-db").html(newHTML.join(""));
-            $('.button-pop-up').text('connect');
+            $(".dropdown-db").html(newHTML.join(''));
+            $('.modal-content button').text('Connect');
         } else if ( this.status == 500 ) {
-            $('.modal-error').html('<p class="error-connection">Internal server error check your mongo connection</p>');
-            $('.button-pop-up').text('Re-connect');
+            $('.modal-error').html('<p>Internal server error check your mongo connection</p>');
+            $('.modal-content button').text('Re-connect');
             $('#loading').css("visibility",'hidden');
         }
     }
     mongoHttpRequest.open('POST', '/connect');
     mongoHttpRequest.send(mongoUrl);
-}
+});
 
 
 function select_dbs() {
@@ -139,7 +143,7 @@ function select_dbs() {
             for (var i = 0; i < collectionsArray.length; i++) {
                 newHTMLs.push('<button class="btn-sm dropdown-item" onClick="select_collection()">' + collectionsArray[i] + '</button>');
             }
-            $(".dropdown-collection").html(newHTMLs.join(""));
+            $(".dropdown-collection").html(newHTMLs.join(''));
         }
     }
     collectionHttpRequest.open('GET', '/dbs/'+selected_db+'/collections');
@@ -156,7 +160,7 @@ function select_collection() {
             editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
             console.log(BSON.deserialize(this.responseText));
             isIndented = true;
-            document.querySelector('#indent-button-editor2').style.cssText = 'background-color: #393e46; color: #f7f7f7;';
+            indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
         }
     }
     documentsHttpRequest.open('GET', '/dbs/'+selected_db+'/collections/'+selected_collection+'/docs');
@@ -193,13 +197,13 @@ $('document').ready(function(){
 
 // Get the export-modal
 var exportModal = document.getElementById("exportModal");
-var exportTextarea = document.querySelector('#export-textarea-content');
+var exportTextarea = document.getElementById('export-textarea-content');
 function export_clipboard() {
     // When the user clicks the button, open the modal
     exportModal.style.display = "block";
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("export-close")[0];
+    let span = document.getElementById("export-close");
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
@@ -217,19 +221,17 @@ function copy() {
 
 function download_query() {
     // On click download button, download the file
-    function download_file(text) {
-        var ele = document.createElement('a');
-        ele.style.display = 'none';
-
-        ele.setAttribute('href', 'data:text/plain;charset-utf-8,' + encodeURIComponent(text));
-
-        ele.setAttribute('download', "query.json");
-        document.body.appendChild(ele);
-
-        ele.click();
-        document.body.removeChild(ele);
-    }
 
     var text = document.getElementById("export-textarea-content").value;
-    download_file(text);
+    
+    var ele = document.createElement('a');
+    ele.style.display = 'none';
+
+    ele.setAttribute('href', 'data:json/plain;charset-utf-8,' + encodeURIComponent(text));
+
+    ele.setAttribute('download', "query.json");
+    document.body.appendChild(ele);
+
+    ele.click();
+    document.body.removeChild(ele);
 }
