@@ -1,4 +1,4 @@
-from easy_mql.view import View
+from app.easy_mql.view import View
 from flask import Flask, render_template, request
 
 
@@ -10,17 +10,17 @@ view = View()
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('home/home.html')
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html', title='About')
+    return render_template('about/about.html', title='About')
 
 
 @app.route("/documentation")
 def documentation():
-    return render_template('documentation.html', title='Docs')
+    return render_template('docs/documentation.html', title='Docs')
 
 
 @app.route('/connect', methods=['POST'])
@@ -53,7 +53,3 @@ def get_docs(dbname, col_name):
 @app.route('/dbs/<dbname>/collections/<col_name>/docs/<_id>', methods=['GET'])
 def get_doc(dbname, col_name, _id):
     return view.get_doc(dbname, col_name, _id)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
