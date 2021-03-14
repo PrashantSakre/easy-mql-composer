@@ -22,7 +22,7 @@ jobs:
       - name: If needed, commit black changes to the pull request
         if: failure()
         run: |
-          black app/easy_mql
+          black app/easy_mql --skip-string-normalization
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
