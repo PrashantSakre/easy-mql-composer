@@ -6,7 +6,6 @@ from bson.objectid import ObjectId
 
 
 class View:
-
     def connect(self, url):
         self.connection = pymongo.MongoClient(url)
         return self.get_dbs()
@@ -24,12 +23,16 @@ class View:
     def get_docs(self, db_name, collection_name):
         collection = self.get_db(db_name)[collection_name]
         docs = collection.find({})
-        return json_util.dumps([doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS)
+        return json_util.dumps(
+            [doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS
+        )
 
     def get_doc(self, db_name, collection_name, doc_id):
         collection = self.get_db(db_name)[collection_name]
         docs = collection.find({"_id": ObjectId(doc_id)})
-        return json_util.dumps([doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS)
+        return json_util.dumps(
+            [doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS
+        )
 
     def disconnect(self):
         self.connection.close()
