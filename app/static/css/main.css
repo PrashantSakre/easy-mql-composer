@@ -60,6 +60,16 @@ body {
   animation-duration: 0.4s;
 }
 
+@media only screen and (max-width: 790px) {
+    .modal-content {
+        width: 80%;
+    }
+
+    .modal {
+        padding: 30% 0 0 0; /* Location of the box */
+    }
+}
+
 /* Add Animation to mongo connection modal */
 @-webkit-keyframes animateconnect {
   from {top:-300px; opacity:0}
@@ -120,6 +130,12 @@ body {
   background-color: #fff;
   background-clip: padding-box;
   outline: 0;
+}
+
+@media only screen and (max-width: 790px) {
+    .export-modal-content {
+        width: 80%;
+    }
 }
 
 /* Add Animation to mongo connection modal */
