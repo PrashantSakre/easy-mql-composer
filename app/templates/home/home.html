@@ -27,7 +27,7 @@
             <button class="btn editor-buttons" type="button" title="copy to clipboard" onclick="copy()"><i class="fas fa-copy"></i></button>
             <p>Export Pipeline</p>
         </div>
-        <textarea id="export-textarea-content" class="form-control" rows="10" readonly></textarea>
+        <textarea id="export-textarea-content" class="form-control" rows="15" readonly></textarea>
     </div>
 </div>
 
@@ -85,9 +85,18 @@
                     <button id="button-clear-editor2" class="btn editor-buttons" title="clear's the editor"><i class="fas fa-eraser"></i></button>
                     <button class="btn editor-buttons" onclick="export_clipboard()" title="export the output"><i class="fas fa-file-export"></i></button>
                 </div>
+                <div class="btn-group btn-group-sm editor-button-group" role="group">
+                    <button id="button-mongo-query" class="btn editor-buttons" title="mongo query">Query</button>
+                    <button id="button-output" class="btn editor-buttons" title="easy-mql query output">Result</button>
+                </div>
             </div>
         </div>
-        <div id="editor2">{"boolean": true,"color": "gold","null": null,"number": 123}</div>
+        <div id="editor2">{"boolean": true,"color": "gold","null": null,"number": {
+    "boolean": true,
+    "color": "gold",
+    "null": null,
+    "number": 123
+}}</div>
     </div>
 
 </div>
