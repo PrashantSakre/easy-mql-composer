@@ -134,3 +134,6 @@ References/
 .idea/
 
 .DS_Store
+
+# logs folder
+.logs/
