@@ -120,3 +120,13 @@ function disconnect_button() {
     dbDisconnectHttpRequest.open('POST', '/disconnect');
     dbDisconnectHttpRequest.send();
 }
+
+// add command to lazy-load keybinding_menu extension
+editor1.commands.addCommand({
+    name: "convert",
+    bindKey: {win: "Ctrl-enter", mac: "Command-enter"},
+    exec: function() {
+        convert();
+    }
+});
+editor1.execCommand("convert");
