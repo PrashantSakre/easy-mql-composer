@@ -22,7 +22,7 @@ class View:
         collection = self.get_db(db_name)[collection_name]
         if pipeline is None:
             pipeline = []
-        return (collection.aggregate(pipeline, session=session, **kwargs),)
+        return collection.aggregate(pipeline, session=session, **kwargs)
 
     def disconnect(self):
         self.connection.close()
