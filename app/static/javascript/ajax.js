@@ -1,26 +1,23 @@
 // Easy-MQL query converter
 function convert() {
-    // check for minimum two character available
-    if (editor1.getValue().length >= 2) {
-        // Ajax http request
-        httpRequest = new XMLHttpRequest();
-        editor1_body = editor1.getValue();
-        httpRequest.onreadystatechange = function () {
-            if (this.readyState == 4 ) {
-                if (this.status == 200) {
-                    editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
-                    isIndented = true;
-                    indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                } else {
-                    editor2.setValue(JSON.parse(this.responseText).error);
-                }
+    // Ajax http request
+    httpRequest = new XMLHttpRequest();
+    editor1_body = editor1.getValue();
+    httpRequest.onreadystatechange = function () {
+        if (this.readyState == 4 ) {
+            if (this.status == 200) {
+                editor2.session.setMode("ace/mode/json")
+                editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
+                isIndented = true;
+                indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
+            } else {
+                editor2.session.setMode("ace/mode/python")
+                editor2.setValue(this.responseText);
             }
         }
-        httpRequest.open('POST', '/convert'+'/dbs/'+selected_db+'/collections/'+selected_collection);
-        httpRequest.send(editor1_body);
-    } else {
-        editor2.setValue("Nothing to convert");
     }
+    httpRequest.open('GET', '/dbs/'+selected_db+'/collections/'+selected_collection+'/docs?query=' + editor1_body);
+    httpRequest.send();
 }
 
 // connection to the mongo

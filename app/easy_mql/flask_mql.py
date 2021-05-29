@@ -1,6 +1,9 @@
-from app.easy_mql.view import View
+from bson import json_util
+from easymql import EasyMQL
+from easymql.exc import EasyMQLSyntaxError
 from flask import Flask, render_template, request
 
+from app.easy_mql.view import View
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
@@ -47,9 +50,19 @@ def get_collections(dbname):
 
 @app.route('/dbs/<dbname>/collections/<col_name>/docs', methods=['GET'])
 def get_docs(dbname, col_name):
-    return view.get_docs(dbname, col_name)
+    try:
+        easy_mql_query = str(request.args['query'])
+        app.logger.info(f'Easy MQL: {easy_mql_query}')
+        pipeline = EasyMQL().parse(easy_mql_query)
+        app.logger.info(f'MQL: {pipeline}')
 
+    except EasyMQLSyntaxError as e:
+        return str(e)[1:], 400
 
-@app.route('/dbs/<dbname>/collections/<col_name>/docs/<_id>', methods=['GET'])
-def get_doc(dbname, col_name, _id):
-    return view.get_doc(dbname, col_name, _id)
+    except KeyError:
+        pipeline = []
+
+    return json_util.dumps(
+        {'query': pipeline, 'result': view.get_docs(dbname, col_name, pipeline)},
+        json_options=json_util.RELAXED_JSON_OPTIONS,
+    )
