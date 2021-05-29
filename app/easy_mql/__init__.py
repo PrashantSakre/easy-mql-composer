@@ -1,4 +1,5 @@
 import logging.handlers
+import os
 import time
 
 
@@ -19,7 +20,10 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(detailed)
 # Rotating file
-LOG_FILE_NAME = 'app/.logs/easy-mql-webtool.log'
+LOG_DIR = os.getenv('LOG_DIR', 'app/.logs')
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOG_FILE_NAME = LOG_DIR + '/easy-mql-webtool.log'
 LOG_FILE_SIZE = 2097152  # 2 MiB
 file_handler = logging.handlers.RotatingFileHandler(
     LOG_FILE_NAME, maxBytes=LOG_FILE_SIZE, backupCount=10

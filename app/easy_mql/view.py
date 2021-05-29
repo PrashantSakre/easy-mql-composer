@@ -1,8 +1,6 @@
 import json
 
 import pymongo
-from bson import json_util
-from bson.objectid import ObjectId
 
 
 class View:
@@ -20,19 +18,11 @@ class View:
         collections = self.get_db(db_name).list_collection_names()
         return json.dumps(collections)
 
-    def get_docs(self, db_name, collection_name):
+    def get_docs(self, db_name, collection_name, pipeline=None, session=None, **kwargs):
         collection = self.get_db(db_name)[collection_name]
-        docs = collection.find({})
-        return json_util.dumps(
-            [doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS
-        )
-
-    def get_doc(self, db_name, collection_name, doc_id):
-        collection = self.get_db(db_name)[collection_name]
-        docs = collection.find({"_id": ObjectId(doc_id)})
-        return json_util.dumps(
-            [doc for doc in docs], json_options=json_util.RELAXED_JSON_OPTIONS
-        )
+        if pipeline is None:
+            pipeline = []
+        return (collection.aggregate(pipeline, session=session, **kwargs),)
 
     def disconnect(self):
         self.connection.close()
