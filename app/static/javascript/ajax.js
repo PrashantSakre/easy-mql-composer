@@ -16,7 +16,7 @@ function convert() {
             }
         }
     }
-    httpRequest.open('GET', '/dbs/'+selected_db+'/collections/'+selected_collection+'/docs?query=' + editor1_body);
+    httpRequest.open('GET', `/dbs/${selected_db}/collections/${selected_collection}/docs?query=${encodeURIComponent(editor1_body)}`);
     httpRequest.send();
 }
 
