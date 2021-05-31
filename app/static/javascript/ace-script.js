@@ -6,8 +6,17 @@ var editor1 = ace.edit("editor1", {
     fontSize: '10pt',
     theme: "ace/theme/tomorrow",
     mode: "ace/mode/python",
-    setShowPrintMargin: false,
 });
+
+// add command to editor1 convert()
+editor1.commands.addCommand({
+    name: "convert",
+    bindKey: {win: "Ctrl-enter", mac: "Command-enter"},
+    exec: function() {
+        convert();
+    }
+});
+
 const clearBtnEditor1 = document.getElementById("button-clear-editor1");
 
 clearBtnEditor1.addEventListener('click', () => {
@@ -22,19 +31,14 @@ var editor2 = ace.edit("editor2", {
     fontSize: '10pt',
     theme: "ace/theme/tomorrow",
     mode: "ace/mode/json",
-    setShowPrintMargin: false,
-    readOnly: true
+    readOnly: true,
+    highlightActiveLine: false,
+    highlightGutterLine: false
 });
 
-// Clears the editor2 screen
-const clearBtnEditor2 = document.getElementById("button-clear-editor2");
+// disable cursor in editor2
+editor2.renderer.$cursorLayer.element.style.display = "none"
 
-clearBtnEditor2.addEventListener('click', () => {
-    // clear's the editor2
-    editor2.setValue('');
-    indent_editor2_btn.style.cssText = 'color: #393e46;';
-    isIndented = false;
-});
 
 // function to indent editor2
 const indent_editor2_btn = document.querySelector('#indent-button-editor2');
@@ -42,10 +46,12 @@ const indent_editor2_btn = document.querySelector('#indent-button-editor2');
 function indent2() {
     if (isIndented) {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue())));
+        editor2.clearSelection(); // clear's the selected text in editor
         isIndented = false;
         indent_editor2_btn.style.cssText = 'color: #393e46;';
     } else {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue()), null, 4));
+        editor2.clearSelection();
         isIndented = true;
         indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
     }
