@@ -1,3 +1,9 @@
+let selected_db, selected_collection;
+
+// On click Result and Query buttons
+const btn_result = document.getElementById("button-result");
+const btn_query = document.getElementById("button-mongo-query");
+
 // Easy-MQL query converter
 function convert() {
     // Ajax http request
@@ -6,13 +12,36 @@ function convert() {
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 ) {
             if (this.status == 200) {
-                editor2.session.setMode("ace/mode/json")
-                editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
+                editor2.session.setMode("ace/mode/json");
+                let response = JSON.parse(this.responseText);
+                // add event listener for result button
+                btn_result.addEventListener('click', () => {
+                    editor2.setValue(JSON.stringify(response.result, null, 4));
+                    editor2.clearSelection();
+                    btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
+                    btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                });
+                // add event listener for query button
+                btn_query.addEventListener('click', () => {
+                    editor2.setValue(JSON.stringify(response.query, null, 4));
+                    editor2.clearSelection();
+                    btn_query.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
+                    btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
+                });
+                // set response from server to editor2
+                editor2.setValue(JSON.stringify(response.result, null, 4));
+                editor2.clearSelection();
                 isIndented = true;
+                btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
+                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
                 indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
             } else {
-                editor2.session.setMode("ace/mode/python")
+                // if query is wrong change editor to python and set the value
+                btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
+                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                editor2.session.setMode("ace/mode/python");
                 editor2.setValue(this.responseText);
+                editor2.clearSelection();
             }
         }
     }
@@ -36,7 +65,6 @@ connect_mongo.addEventListener('click', () => {
             $(".disconnect").removeClass("disabled");
             // change the color of db-icon to lime
             document.getElementById('button-connect').style.cssText = 'color: lime;';
-            console.log(JSON.stringify(JSON.parse(this.responseText), null, 4));
             // closes the pop up window after the connection to db
             modal.style.display = "none";
             array = JSON.parse(this.responseText)
@@ -59,13 +87,11 @@ connect_mongo.addEventListener('click', () => {
 
 function select_dbs() {
     selected_db = event.target.innerText;
-    console.log("selected db = "+selected_db);
     document.getElementById('dropdownSelectedDbButton').innerText = selected_db;
     collectionHttpRequest = new XMLHttpRequest();
     collectionHttpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200 ) {
             collectionsArray = JSON.parse(this.responseText);
-            console.log(collectionsArray);
             var newHTMLs = [];
             for (var i = 0; i < collectionsArray.length; i++) {
                 newHTMLs.push('<button class="btn-sm dropdown-item" onClick="select_collection()">' + collectionsArray[i] + '</button>');
@@ -79,14 +105,16 @@ function select_dbs() {
 
 function select_collection() {
     selected_collection = event.target.innerText;
-    console.log("selected collection = "+selected_collection);
     document.getElementById('dropdownSelectedCollectionButton').innerText = selected_collection;
     documentsHttpRequest = new XMLHttpRequest();
     documentsHttpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200 ) {
-            editor2.setValue(JSON.stringify(JSON.parse(this.responseText), null, 4));
-            console.log(BSON.deserialize(this.responseText));
+            let response = JSON.parse(this.responseText);
+            editor2.setValue(JSON.stringify(response.result, null, 4));
+            editor2.clearSelection();
             isIndented = true;
+            btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
+            btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
             indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
         }
     }
@@ -110,20 +138,8 @@ function disconnect_button() {
             isIndented = false;
             // clear's the editor2
             editor2.setValue('');
-        } else {
-            console.log("Not disconnected");
         }
     }
     dbDisconnectHttpRequest.open('POST', '/disconnect');
     dbDisconnectHttpRequest.send();
 }
-
-// add command to lazy-load keybinding_menu extension
-editor1.commands.addCommand({
-    name: "convert",
-    bindKey: {win: "Ctrl-enter", mac: "Command-enter"},
-    exec: function() {
-        convert();
-    }
-});
-editor1.execCommand("convert");
