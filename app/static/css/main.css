@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -175,6 +174,7 @@ body {
   line-height: 1.5;
   border: 1px solid #d1d5da;
   border-radius: 0 0 4px 4px;
+  margin-top: 10px;
 }
 
 .editors {
@@ -203,29 +203,14 @@ body {
   margin: 0;
 }
 
-.editor-menu-top {
-    border-color: #929aab !important;
-    background-color: #929aab;
-    border-radius: 4px 4px 0 0;
-}
-
-.editor-dropdown {
-    padding: .1rem 0;
-}
-
 .editor-button-group {
     margin: .5% .5%;
     line-height: 1.1rem;
 }
 
-.editor-button-group-connect {
-    float: right;
-}
-
 .editor-buttons {
     color: #393e46;
     line-height: 1.1rem !important;
-    border-radius: 0 !important;
 }
 
 .editor-buttons:hover {
@@ -233,9 +218,6 @@ body {
     color: #f7f7f7;
 }
 
-.editor-button-dropdown:focus {
-    box-shadow: 0 0 0 0rem rgb(57, 62, 70);
-}
 /*---  Editor-section-end   -------*/
 
 /* Footer-section */
@@ -247,4 +229,129 @@ body {
 
 .footer a {
     font-size: 11px;
+}
+
+#editor1 .ace_gutter {
+  background-color: #FFF59D;
+}
+
+.editor-button {
+  background-color: white;
+  border-radius: 6px;
+  border: none;
+  height: 25px;
+  min-width: 70px;
+  margin-left: 10px;
+  font-family: "IBM Plex Mono";
+  font-size: 10pt;
+  box-shadow: 4px 4px 8px 0px rgba(0,0,0, 0.1);
+  text-align-last: center;
+}
+
+.editor-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,0,0, 0.1);
+}
+
+.editor-button:focus {
+  outline: none;
+}
+
+#run-button {
+  margin-left: 0px;
+  background-color: green;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+}
+
+#run-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+}
+
+#clear-button {
+  background-color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,0,0, 0.1);
+}
+
+#clear-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,0,0, 0.1);
+}
+
+#editor1 {
+  background-color: #FFFDE7;;
+  box-shadow: 0px 2px 16px 0px rgba(0,0,0,0.2); 
+}
+
+.conn-button {
+  background-color: green;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+}
+
+.conn-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+}
+
+.disconn-button {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(244, 67, 54, 0.4);
+}
+
+.disconn-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(244, 67, 54, 0.4);
+}
+
+#db-dropdown-button {
+  background-color: #FFA726;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(255, 167, 38,0.4);
+}
+
+#db-dropdown-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(255, 167, 38,0.4);
+}
+
+#coll-dropdown-button {
+  background-color: #AB47BC;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(171, 71, 188,0.4);
+}
+
+#coll-dropdown-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(171, 71, 188,0.4);
+}
+
+.editor-button-panel {
+  display: flex;
+}
+
+.editor-button-container {
+  display: inline-flex;
+}
+
+#action-button-container {
+  float: left;
+}
+
+#conn-button-container {
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.dropdown-item {
+  height: 25px;
+}
+
+.dropdown-menu {
+  font-family: "IBM Plex Mono";
+  font-size: 10pt;
+  padding: 2px 0 2px 0;
+  min-width: 5rem;
+}
+
+.footer-link {
+  float: right;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 10px;
 }
