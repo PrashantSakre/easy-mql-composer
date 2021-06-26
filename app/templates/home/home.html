@@ -35,46 +35,31 @@
 
     <!----------     Editor 1 section   ---------->
     <div class="editor">
-        <div class="row">
-            <div id="button-group1" class="col editor-menu-top">
-                <div class="btn-group btn-group-sm editor-button-group" role="group">
-                    <button class="btn editor-buttons" type="button" title="convert to json form" onclick="convert()"><i class="fas fa-play"></i></button>
-                    <button id="button-clear-editor1" class="btn editor-buttons" title="clear's the editor"><i class="fas fa-eraser"></i></button>
-                </div>
+        <div class="editor-button-panel">
+            <div id="action-button-container" class="editor-button-container">
+                <button id="run-button" class="editor-button" title="convert to json form">Run</button>
+                <button id="clear-button" class="editor-button" title="clear's the editor">Clear</button>
+            </div>
+            
+            <div id="conn-button-container" class="editor-button-container">
+                <button id="conn-button" class="editor-button conn-button" title="Run query">Connect</button>
 
-                <!----------     db-connection bar buttons   ---------->
-                <div class="btn-group btn-group-sm editor-button-group editor-button-group-connect" role="group">
-                    <div class="dropdown">
-                      <button id="dropdownSelectedCollectionButton" class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select collection
-                      </button>
-                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-collection" aria-labelledby="dropdownMenuButton">
-                          <button class="btn-sm dropdown-item">Empty</button>
-                      </div>
-                    </div>
-                    <div class="dropdown">
-                      <button id="dropdownSelectedDbButton" class="btn btn-sm editor-buttons dropdown-toggle editor-button-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select db
-                      </button>
-                      <div class="editor-dropdown dropdown-menu dropdown-menu-right dropdown-db" aria-labelledby="dropdownMenuButton">
-                          <button class="btn-sm dropdown-item">Empty</button>
-                      </div>
-                    </div>
-                    <div class="btn-group">
-                        <button id="button-connect" type="button" class="btn btn-sm editor-buttons dropdown-toggle dropdown-toggle-split editor-button-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="connect to mongo">
-                            <i class="fas fa-database"></i>
-                        </button>
-                        <div class="editor-dropdown dropdown-menu dropdown-menu-right">
-                            <button class="btn-sm dropdown-item connect" aria-disabled="true" onclick="connect_button()">Connect</button>
-                            <button class="btn-sm dropdown-item disconnect" aria-disabled="true" onclick="disconnect_button()">Disconnect</button>
-                        </div>
+                <div id="db-dropdown">
+                    <button id="db-dropdown-button" class="editor-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Db</button>
+                    <div id="db-dropdown-menu" class="dropdown-menu" aria-labelledby="db-dropdown-button">
+                        <button class="dropdown-item">Empty</button>
                     </div>
                 </div>
 
+                <div id="coll-dropdown">
+                    <button id="coll-dropdown-button" class="editor-button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Coll</button>
+                    <div id="coll-dropdown-menu" class="dropdown-menu" aria-labelledby="coll-dropdown-button">
+                        <button class="dropdown-item">Empty</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="editor1">### Write EASY-MQL Query here
-COUNT AS 'Documents';</div>
+        <div id="editor1"># Write your EASY-MQL query here</div>
     </div>
 
     <!----------     Editor 2 section   ---------->
@@ -98,8 +83,6 @@ COUNT AS 'Documents';</div>
 
 <!-- Footer - section -->
 <div class="footer">
-    <p>
-        <a href="https://ace.c9.io/" target="_blank" rel="noopener noreferrer">Editors powered by Ace</a>
-    </p>
+    <a href="https://ace.c9.io/" class="footer-link" target="_blank" rel="noopener noreferrer">Editors powered by Ace</a>
 </div>
 {% endblock content %}

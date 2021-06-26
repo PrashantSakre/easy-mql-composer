@@ -17,7 +17,7 @@ editor1.commands.addCommand({
     }
 });
 
-const clearBtnEditor1 = document.getElementById("button-clear-editor1");
+const clearBtnEditor1 = document.getElementById("clear-button");
 
 clearBtnEditor1.addEventListener('click', () => {
     // clear's the editor1 
@@ -57,27 +57,6 @@ function indent2() {
     }
 }
 
-
-
-
-// Get the modal
-var modal = document.getElementById("connectModal");
-
-function connect_button() {
-    // When the user clicks the button, open the modal
-    modal.style.display = "block";
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-}
-
-
-
 $('document').ready(function(){
     $(".disconnect").addClass("disabled");
 });
@@ -104,7 +83,6 @@ function copy() {
     exportTextarea.select();
     document.execCommand('copy');
 }
-
 
 function download_query() {
     // On click download button, download the file
