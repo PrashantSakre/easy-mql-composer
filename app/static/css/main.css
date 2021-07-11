@@ -18,6 +18,7 @@ body {
 /*---  header-section ----*/
 .bg-heading {
     background-color: #393e46;
+    box-shadow: 0px 4px 8px 0px rgba(20, 1, 23, 0.4);
 }
 
 .site-header .navbar-nav .nav-link {
@@ -235,6 +236,60 @@ body {
   background-color: #FFF59D;
 }
 
+.editor2-buttons {
+  display: flex;
+}
+
+#editor2 .ace_gutter {
+  background-color: #FFF59D;
+}
+
+#indent-button  {
+  margin-left: 0px;
+  background-color: steelblue;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+}
+
+#indent-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+}
+
+#export-button {
+  background-color: darkcyan;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+}
+
+#export-button:hover {
+  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+}
+
+.editor2-button-group {
+  display: flex;
+  margin-left: 10px;
+  border-radius: 6px;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+  align-items: end;
+}
+
+.editor2-button-group button {
+  margin-left: 0;
+}
+
+#button-mongo-query {
+  color: white;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+  background-color: darkseagreen;
+}
+
+#button-result {
+  color: white;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  background-color: seagreen;
+}
 .editor-button {
   background-color: white;
   border-radius: 6px;
@@ -249,7 +304,12 @@ body {
 }
 
 .editor-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(0,0,0, 0.1);
+  box-shadow: 4px 4px 16px 0px rgba(darken(dodgerblue, 40%));
+  transform: scale(1.05);
+}
+.editor-button:active {
+    box-shadow: 4px 1px 8px 0px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
 }
 
 .editor-button:focus {
@@ -279,6 +339,11 @@ body {
 #editor1 {
   background-color: #FFFDE7;;
   box-shadow: 0px 2px 16px 0px rgba(0,0,0,0.2); 
+}
+
+#editor2 {
+  background-color: #FFFDE7;;
+  box-shadow: 0px 2px 16px 0px rgba(0,0,0,0.2);
 }
 
 .conn-button {
