@@ -22,27 +22,27 @@ function convert() {
                 btn_result.addEventListener('click', () => {
                     editor2.setValue(JSON.stringify(response.result, null, 4));
                     editor2.clearSelection();
-                    btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                    btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                    btn_result.style.cssText = 'background-color: seagreen;';
+                    btn_query.style.cssText = 'background-color: darkseagreen;';
                 });
                 // add event listener for query button
                 btn_query.addEventListener('click', () => {
                     editor2.setValue(JSON.stringify(response.query, null, 4));
                     editor2.clearSelection();
-                    btn_query.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                    btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
+                    btn_query.style.cssText = 'background-color: seagreen;';
+                    btn_result.style.cssText = 'background-color: darkseagreen;';
                 });
                 // set response from server to editor2
                 editor2.setValue(JSON.stringify(response.result, null, 4));
                 editor2.clearSelection();
                 isIndented = true;
-                btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                btn_result.style.cssText = 'background-color: seagreen;';
+                btn_query.style.cssText = 'background-color: darkseagreen;';
                 indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
             } else {
                 // if query is wrong change editor to python and set the value
-                btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
-                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                btn_result.style.cssText = 'background-color: seagreen;';
+                btn_query.style.cssText = 'background-color: darkseagreen;';
                 editor2.session.setMode("ace/mode/python");
                 editor2.setValue(this.responseText);
                 editor2.clearSelection();
@@ -151,8 +151,8 @@ function select_collection(event) {
             editor2.setValue(JSON.stringify(response.result, null, 4));
             editor2.clearSelection();
             isIndented = true;
-            btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-            btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+            btn_result.style.cssText = 'background-color: seagreen;';
+            btn_query.style.cssText = 'background-color: darkseagreen;';
             indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
         }
     }
@@ -210,27 +210,27 @@ run_button.addEventListener('click', () => {
                 btn_result.addEventListener('click', () => {
                     editor2.setValue(JSON.stringify(response.result, null, 4));
                     editor2.clearSelection();
-                    btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                    btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                    btn_result.style.cssText = 'background-color: seagreen;';
+                    btn_query.style.cssText = 'background-color: darkseagreen;';
                 });
                 // add event listener for query button
                 btn_query.addEventListener('click', () => {
                     editor2.setValue(JSON.stringify(response.query, null, 4));
                     editor2.clearSelection();
-                    btn_query.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                    btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
+                    btn_query.style.cssText = 'background-color: seagreen;';
+                    btn_result.style.cssText = 'background-color: darkseagreen;';
                 });
                 // set response from server to editor2
                 editor2.setValue(JSON.stringify(response.result, null, 4));
                 editor2.clearSelection();
                 isIndented = true;
-                btn_result.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
-                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                btn_result.style.cssText = 'background-color: seagreen;';
+                btn_query.style.cssText = 'background-color: darkseagreen;';
                 indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
             } else {
                 // if query is wrong change editor to python and set the value
-                btn_result.style.cssText = 'color: #393e46; background-color: #929aab;';
-                btn_query.style.cssText = 'color: #393e46; background-color: #929aab;';
+                btn_result.style.cssText = 'background-color: darkseagreen;';
+                btn_query.style.cssText = 'background-color: darkseagreen;';
                 editor2.session.setMode("ace/mode/python");
                 editor2.setValue(this.responseText);
                 editor2.clearSelection();
