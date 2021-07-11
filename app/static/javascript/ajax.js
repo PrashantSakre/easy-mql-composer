@@ -38,7 +38,6 @@ function convert() {
                 isIndented = true;
                 btn_result.style.cssText = 'background-color: seagreen;';
                 btn_query.style.cssText = 'background-color: darkseagreen;';
-                indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
             } else {
                 // if query is wrong change editor to python and set the value
                 btn_result.style.cssText = 'background-color: seagreen;';
@@ -153,7 +152,6 @@ function select_collection(event) {
             isIndented = true;
             btn_result.style.cssText = 'background-color: seagreen;';
             btn_query.style.cssText = 'background-color: darkseagreen;';
-            indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
         }
     }
     documentsHttpRequest.open('GET', '/dbs/'+selected_db+'/collections/'+selected_collection+'/docs');
@@ -226,7 +224,6 @@ run_button.addEventListener('click', () => {
                 isIndented = true;
                 btn_result.style.cssText = 'background-color: seagreen;';
                 btn_query.style.cssText = 'background-color: darkseagreen;';
-                indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
             } else {
                 // if query is wrong change editor to python and set the value
                 btn_result.style.cssText = 'background-color: darkseagreen;';
