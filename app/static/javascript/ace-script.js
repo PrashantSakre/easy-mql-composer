@@ -40,20 +40,16 @@ var editor2 = ace.edit("editor2", {
 editor2.renderer.$cursorLayer.element.style.display = "none"
 
 
-// function to indent editor2
-const indent_editor2_btn = document.querySelector('#indent-button-editor2');
 
 function indent2() {
     if (isIndented) {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue())));
         editor2.clearSelection(); // clear's the selected text in editor
         isIndented = false;
-        indent_editor2_btn.style.cssText = 'color: #393e46;';
     } else {
         editor2.setValue(JSON.stringify(JSON.parse(editor2.getValue()), null, 4));
         editor2.clearSelection();
         isIndented = true;
-        indent_editor2_btn.style.cssText = 'color: #f7f7f7; background-color: #393e46;';
     }
 }
 
