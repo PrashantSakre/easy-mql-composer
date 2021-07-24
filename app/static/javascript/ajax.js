@@ -8,49 +8,6 @@ var modal = document.getElementById("connectModal");
 const btn_result = document.getElementById("button-result");
 const btn_query = document.getElementById("button-mongo-query");
 
-// Easy-MQL query converter
-function convert() {
-    // Ajax http request
-    httpRequest = new XMLHttpRequest();
-    editor1_body = editor1.getValue();
-    httpRequest.onreadystatechange = function () {
-        if (this.readyState == 4 ) {
-            if (this.status == 200) {
-                editor2.session.setMode("ace/mode/json");
-                let response = JSON.parse(this.responseText);
-                // add event listener for result button
-                btn_result.addEventListener('click', () => {
-                    editor2.setValue(JSON.stringify(response.result, null, 4));
-                    editor2.clearSelection();
-                    btn_result.style.cssText = 'background-color: seagreen;';
-                    btn_query.style.cssText = 'background-color: darkseagreen;';
-                });
-                // add event listener for query button
-                btn_query.addEventListener('click', () => {
-                    editor2.setValue(JSON.stringify(response.query, null, 4));
-                    editor2.clearSelection();
-                    btn_query.style.cssText = 'background-color: seagreen;';
-                    btn_result.style.cssText = 'background-color: darkseagreen;';
-                });
-                // set response from server to editor2
-                editor2.setValue(JSON.stringify(response.result, null, 4));
-                editor2.clearSelection();
-                isIndented = true;
-                btn_result.style.cssText = 'background-color: seagreen;';
-                btn_query.style.cssText = 'background-color: darkseagreen;';
-            } else {
-                // if query is wrong change editor to python and set the value
-                btn_result.style.cssText = 'background-color: seagreen;';
-                btn_query.style.cssText = 'background-color: darkseagreen;';
-                editor2.session.setMode("ace/mode/python");
-                editor2.setValue(this.responseText);
-                editor2.clearSelection();
-            }
-        }
-    }
-    httpRequest.open('GET', `/dbs/${selected_db}/collections/${selected_collection}/docs?query=${encodeURIComponent(editor1_body)}`);
-    httpRequest.send();
-}
 
 conn_button.addEventListener('click', () => {
     if (isConnected) {
@@ -181,8 +138,10 @@ function disconnect_button() {
 }
 
 let run_button = document.getElementById("run-button");
+var isRunning = false;
+var httpRequest = new XMLHttpRequest();
 
-run_button.addEventListener('click', () => {
+function convertOrCancel() {
     if (!isConnected) {
         alert('Please connect to server');
         return;
@@ -193,47 +152,59 @@ run_button.addEventListener('click', () => {
         alert('Please select a collection');
         return;
     }
-    
-    // Ajax http request
-    httpRequest = new XMLHttpRequest();
-    editor1_body = editor1.getValue();
-    httpRequest.onreadystatechange = function () {
-        if (this.readyState == 4 ) {
-            setTimeout(5000);
-            
-            if (this.status == 200) {
-                editor2.session.setMode("ace/mode/json");
-                let response = JSON.parse(this.responseText);
-                // add event listener for result button
-                btn_result.addEventListener('click', () => {
+
+    if (isRunning == true) {
+        httpRequest.abort();
+        run_button.innerText = "Run";
+        run_button.classList.remove("cancel-button");
+        isRunning = false;
+    } else {
+        isRunning = true;
+        run_button.innerText = "Cancel"
+        run_button.classList.add("cancel-button");
+        editor1_body = editor1.getValue();
+        httpRequest.onreadystatechange = function () {
+            if (this.readyState == 4 ) {
+                run_button.innerText = "Run";
+                run_button.classList.remove("cancel-button");
+                isRunning = false;
+
+                if (this.status == 200) {
+                    editor2.session.setMode("ace/mode/json");
+                    let response = JSON.parse(this.responseText);
+                    // add event listener for result button
+                    btn_result.addEventListener('click', () => {
+                        editor2.setValue(JSON.stringify(response.result, null, 4));
+                        editor2.clearSelection();
+                        btn_result.style.cssText = 'background-color: seagreen;';
+                        btn_query.style.cssText = 'background-color: darkseagreen;';
+                    });
+                    // add event listener for query button
+                    btn_query.addEventListener('click', () => {
+                        editor2.setValue(JSON.stringify(response.query, null, 4));
+                        editor2.clearSelection();
+                        btn_query.style.cssText = 'background-color: seagreen;';
+                        btn_result.style.cssText = 'background-color: darkseagreen;';
+                    });
+                    // set response from server to editor2
                     editor2.setValue(JSON.stringify(response.result, null, 4));
                     editor2.clearSelection();
+                    isIndented = true;
                     btn_result.style.cssText = 'background-color: seagreen;';
                     btn_query.style.cssText = 'background-color: darkseagreen;';
-                });
-                // add event listener for query button
-                btn_query.addEventListener('click', () => {
-                    editor2.setValue(JSON.stringify(response.query, null, 4));
-                    editor2.clearSelection();
-                    btn_query.style.cssText = 'background-color: seagreen;';
+                } else {
+                    // if query is wrong change editor to python and set the value
                     btn_result.style.cssText = 'background-color: darkseagreen;';
-                });
-                // set response from server to editor2
-                editor2.setValue(JSON.stringify(response.result, null, 4));
-                editor2.clearSelection();
-                isIndented = true;
-                btn_result.style.cssText = 'background-color: seagreen;';
-                btn_query.style.cssText = 'background-color: darkseagreen;';
-            } else {
-                // if query is wrong change editor to python and set the value
-                btn_result.style.cssText = 'background-color: darkseagreen;';
-                btn_query.style.cssText = 'background-color: darkseagreen;';
-                editor2.session.setMode("ace/mode/python");
-                editor2.setValue(this.responseText);
-                editor2.clearSelection();
+                    btn_query.style.cssText = 'background-color: darkseagreen;';
+                    editor2.session.setMode("ace/mode/python");
+                    editor2.setValue(this.responseText);
+                    editor2.clearSelection();
+                }
             }
         }
+        httpRequest.open('GET', `/dbs/${selected_db}/collections/${selected_collection}/docs?query=${encodeURIComponent(editor1_body)}`);
+        httpRequest.send();
     }
-    httpRequest.open('GET', `/dbs/${selected_db}/collections/${selected_collection}/docs?query=${encodeURIComponent(editor1_body)}`);
-    httpRequest.send();
-});
+}
+
+run_button.addEventListener('click', convertOrCancel);

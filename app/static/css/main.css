@@ -213,21 +213,21 @@ body {
   margin-left: 0px;
   background-color: steelblue;
   color: white;
-  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+  box-shadow: 4px 4px 8px 0px rgba(70,130,180,0.4);
 }
 
 #indent-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+  box-shadow: 4px 4px 16px 0px rgba(70,130,180,0.4);
 }
 
 #export-button {
   background-color: darkcyan;
   color: white;
-  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+  box-shadow: 4px 4px 8px 0px rgba(0,139,139,0.4);
 }
 
 #export-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
+  box-shadow: 4px 4px 16px 0px rgba(0,139,139,0.4);
 }
 
 .editor2-button-group {
@@ -249,18 +249,32 @@ body {
   background-color: darkseagreen;
 }
 
+#button-mongo-query:hover {
+  box-shadow: 4px 4px 16px 0px rgba(46,139,87,0.4);
+}
+
 #button-result {
   color: white;
   border-top-left-radius: unset;
   border-bottom-left-radius: unset;
   background-color: seagreen;
 }
+
+#button-result:hover {
+  box-shadow: 4px 4px 16px 0px rgba(46,139,87,0.4);
+}
+
+
 .editor-button {
   background-color: white;
   border-radius: 6px;
   border: none;
   height: 25px;
   min-width: 70px;
+  max-width: 120px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   margin-left: 10px;
   font-size: 10pt;
   box-shadow: 4px 4px 8px 0px rgba(0,0,0, 0.1);
@@ -280,17 +294,6 @@ body {
   outline: none;
 }
 
-#run-button {
-  margin-left: 0px;
-  background-color: green;
-  color: white;
-  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
-}
-
-#run-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
-}
-
 #clear-button {
   background-color: white;
   box-shadow: 4px 4px 8px 0px rgba(0,0,0, 0.1);
@@ -306,7 +309,7 @@ body {
   border-radius: 6px;
   margin-top: 10px;
   background-color: #fafeff;
-  box-shadow: 4px 4px 16px 0px rgba(0,0,0,0.15);
+  box-shadow: 4px 4px 16px 0px rgba(0,0,0,0.3);
 }
 
 .editor-box .ace_gutter {
@@ -318,22 +321,29 @@ body {
 }
 
 .conn-button {
+  margin-left: unset;
   background-color: green;
   color: white;
   box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
 }
 
-.conn-button:hover {
+.run-button {
+  background-color: green;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(0,128,0,0.4);
+}
+
+.conn-button:hover, .run-button:hover {
   box-shadow: 4px 4px 16px 0px rgba(0,128,0,0.4);
 }
 
-.disconn-button {
+.disconn-button, .cancel-button {
   background-color: #f44336;
   color: white;
   box-shadow: 4px 4px 8px 0px rgba(244, 67, 54, 0.4);
 }
 
-.disconn-button:hover {
+.disconn-button:hover, .cancel-button:hover {
   box-shadow: 4px 4px 16px 0px rgba(244, 67, 54, 0.4);
 }
 
@@ -371,7 +381,6 @@ body {
 
 #conn-button-container {
   flex-grow: 1;
-  justify-content: flex-end;
 }
 
 .dropdown-item {

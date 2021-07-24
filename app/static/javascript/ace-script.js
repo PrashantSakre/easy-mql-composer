@@ -13,7 +13,7 @@ editor1.commands.addCommand({
     name: "convert",
     bindKey: {win: "Ctrl-enter", mac: "Command-enter"},
     exec: function() {
-        convert();
+        convertOrCancel();
     }
 });
 
