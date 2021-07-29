@@ -394,11 +394,11 @@ body {
 }
 
 @media screen and (max-width: 420px) {
-  #action-button-container {
+  #conn-button-container {
     margin-bottom: 10px;
   }
 
-  #conn-button {
+  #run-button {
     margin-left: unset;
   }
 
