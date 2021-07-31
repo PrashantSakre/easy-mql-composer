@@ -143,3 +143,6 @@ References/
 cypress.env.json
 cypress/videos
 cypress/screenshots
+
+# Node modules
+node_modules/
