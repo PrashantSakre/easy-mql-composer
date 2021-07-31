@@ -137,3 +137,12 @@ References/
 
 # logs folder
 .logs/
+
+
+# Cypress
+cypress.env.json
+cypress/videos
+cypress/screenshots
+
+# Node modules
+node_modules/

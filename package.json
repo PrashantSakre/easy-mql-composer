@@ -1,0 +1,33 @@
+{
+  "name": "easy-mql-webtool",
+  "version": "1.0.0",
+  "description": "Easy-mql-webtool",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^8.1.0"
+  },
+  "scripts": {
+    "cypress": "cypress",
+    "cypress:open": "cypress open",
+    "cypress:dev:run": "npm run cypress -- run",
+    "cypress:dev:watch": "npm run cypress -- open",
+    "cypress:prd:run": "npm run cypress -- run",
+    "cypress:prd:watch": "npm run cypress -- open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrashantSakre/easy-mql-webtool.git"
+  },
+  "keywords": [
+    "Easy-mql-webtool",
+    "Easy-mql",
+    "MongoDB"
+  ],
+  "author": "Prashant Sakre, Vivek Shrikhande",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrashantSakre/easy-mql-webtool/issues"
+  },
+  "homepage": "https://github.com/PrashantSakre/easy-mql-webtool#readme"
+}
