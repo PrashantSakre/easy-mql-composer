@@ -1,7 +1,3 @@
-const url = {
-    mongoLocal: "mongodb://localhost:27017",
-};
-
 const selectorsId = {
     connButton: "#conn-button",
     connMongoButton: "#connect_mongo",
@@ -16,7 +12,7 @@ const selectorsClass = {
     aceEditorInputText: ".ace_text-input",
 };
 
-const StandardQueries = ["COUNT AS 'Documents';", "COUNT AS 'DOC';"];
+const StandardQueries = ["COUNT AS 'Documents';", "MATCH  IN ( 'Mobile', categories);"];
 
 const env = Cypress.env();
 
@@ -24,16 +20,16 @@ describe("Easy-mql Run Queries", () => {
     it("Visit and connect to mongo url", () => {
         cy.visit("/").get(selectorsId.connButton).click();
         cy.get("input" + selectorsId.mongoButton)
-            .type(url.mongoLocal)
+            .type(env.mongoLocal)
             .get(selectorsId.connMongoButton)
             .click();
     });
 
     it("select db and collection", () => {
         cy.get(selectorsId.dbDropDownButton).click();
-        cy.get(selectorsClass.dropDownItem).contains(env.db).click();
+        cy.get(selectorsClass.dropDownItem).contains('Library').click();
         cy.get(selectorsId.collDropDownButton).click();
-        cy.get(selectorsClass.dropDownItem).contains(env.collection).click();
+        cy.get(selectorsClass.dropDownItem).contains('bookslibraries').click();
     });
 
     StandardQueries.map((item) => {
