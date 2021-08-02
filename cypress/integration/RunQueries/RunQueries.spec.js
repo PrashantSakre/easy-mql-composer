@@ -12,7 +12,11 @@ const selectorsClass = {
     aceEditorInputText: ".ace_text-input",
 };
 
-const StandardQueries = ["COUNT AS 'Documents';", "MATCH  IN ( 'Mobile', categories);"];
+const Queries = [
+    "COUNT AS 'Documents';",
+    "MATCH status = \"PUBLISH\"; COUNT AS 'Documents';",
+    "MATCH status != \"PUBLISH\"; COUNT AS 'Documents';",
+];
 
 const env = Cypress.env();
 
@@ -27,12 +31,12 @@ describe("Easy-mql Run Queries", () => {
 
     it("select db and collection", () => {
         cy.get(selectorsId.dbDropDownButton).click();
-        cy.get(selectorsClass.dropDownItem).contains('Library').click();
+        cy.get(selectorsClass.dropDownItem).contains("Library").click();
         cy.get(selectorsId.collDropDownButton).click();
-        cy.get(selectorsClass.dropDownItem).contains('bookslibraries').click();
+        cy.get(selectorsClass.dropDownItem).contains("bookslibraries").click();
     });
 
-    StandardQueries.map((item) => {
+    Queries.map((item) => {
         it("Run queries " + item, () => {
             cy.get(selectorsClass.aceEditorInputText)
                 .first()
