@@ -13,7 +13,11 @@
     "cypress:dev:run": "npm run cypress -- run",
     "cypress:dev:watch": "npm run cypress -- open",
     "cypress:prd:run": "npm run cypress -- run",
-    "cypress:prd:watch": "npm run cypress -- open"
+    "cypress:prd:watch": "npm run cypress -- open",
+    "cypress:int:seed": "npm i && npm run seed:install",
+    "seed:install": "cd ./tools/seed && npm i",
+    "seed": "cd ./tools/seed/ && node seedDatabase -i",
+    "seed:remove": "cd ./tools/seed/ && node seedDatabase -d"
   },
   "repository": {
     "type": "git",

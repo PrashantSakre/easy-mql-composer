@@ -1,0 +1,21 @@
+{
+  "name": "seed",
+  "version": "1.0.0",
+  "description": "Easy-mql-webtool database seeder for testing.",
+  "main": "seedDatabase.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node seedDatabase -i",
+    "seed:remove": "node seedDatabase -d"
+  },
+  "keywords": [
+    "Seeder",
+    "Easy-mql-webtool"
+  ],
+  "author": "Prashant Sakre",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.13.5"
+  }
+}
