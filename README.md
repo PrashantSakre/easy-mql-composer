@@ -1,4 +1,3 @@
-
 # Easy MQL Composer
 
 Query Composer for EasyMQL
@@ -8,9 +7,37 @@ Query Composer for EasyMQL
 ### Docker
 
 1. Pull the docker image
-`docker pull easy-mql-composer`
+
+    ```sh
+    docker pull easy-mql-composer
+    ```
 
 2. Run the container
-`docker run -p 5000:5000 easy-mql-composer`
 
-Set HOST and PORT environment variables to override default host  and port values respectively.
+    ```sh
+    docker run -p 5000:5000 easy-mql-composer
+    ```
+
+Set `HOST` and `PORT` environment variables to override default host `0.0.0.0` and port `5000` values respectively.
+
+### Standalone
+
+1. Clone this repository or simply download
+
+    ```sh
+    # Clone
+    git clone https://github.com/PrashantSakre/easy-mql-webtool.git
+
+    # -- OR --
+    # Download zip file from github and unzip it using the following command
+    unzip <zip file path>
+    ```
+
+2. Run entry file
+
+    ```sh
+    cd easy-mql-webtool
+    python3 run.py
+    ```
+
+Set `HOST` and `PORT` environment variables to override default host `0.0.0.0` and port `5000` values respectively.
