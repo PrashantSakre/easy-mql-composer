@@ -16,6 +16,6 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.9"
   }
 }
