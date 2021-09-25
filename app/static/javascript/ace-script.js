@@ -24,6 +24,26 @@ clearBtnEditor1.addEventListener('click', () => {
     editor1.setValue('');
 });
 
+//Set editor1 placeholder
+function update() {
+    var shouldShow = !editor1.session.getValue().length;
+    var node = editor1.renderer.emptyMessageNode;
+    if (!shouldShow && node) {
+        editor1.renderer.scroller.removeChild(editor1.renderer.emptyMessageNode);
+        editor1.renderer.emptyMessageNode = null;
+    } else if (shouldShow && !node) {
+        node = editor1.renderer.emptyMessageNode = document.createElement("div");
+        node.textContent = "Write your EASY-MQL query here"
+        node.className = "ace_emptyMessage"
+        node.style.padding = "0 9px"
+        node.style.position = "absolute"
+        node.style.zIndex = 9
+        node.style.opacity = 0.5
+        editor1.renderer.scroller.appendChild(node);
+    }
+}
+editor1.on("input", update);
+setTimeout(update, 100);
 
 //------------------------ Editor 2 section -----------------------//
 var editor2 = ace.edit("editor2", {
