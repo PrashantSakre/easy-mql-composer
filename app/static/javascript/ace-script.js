@@ -1,5 +1,24 @@
 var isIndented = false;
 
+//Set editors placeholder 
+function update(editor, text) {
+    var shouldShow = !editor.session.getValue().length;
+    var node = editor.renderer.emptyMessageNode;
+    if (!shouldShow && node) {
+        editor.renderer.scroller.removeChild(editor.renderer.emptyMessageNode);
+        editor.renderer.emptyMessageNode = null;
+    } else if (shouldShow && !node) {
+        node = editor.renderer.emptyMessageNode = document.createElement("div");
+        node.textContent = text
+        node.className = "ace_emptyMessage"
+        node.style.padding = "0 9px"
+        node.style.position = "absolute"
+        node.style.zIndex = 9
+        node.style.opacity = 0.5
+        editor.renderer.scroller.appendChild(node);
+    }
+}
+
 //----------------------- Editor 1 section -----------------------//
 var editor1 = ace.edit("editor1", {
     fontFamily: 'IBM Plex Mono',
@@ -24,26 +43,8 @@ clearBtnEditor1.addEventListener('click', () => {
     editor1.setValue('');
 });
 
-//Set editor1 placeholder
-function update() {
-    var shouldShow = !editor1.session.getValue().length;
-    var node = editor1.renderer.emptyMessageNode;
-    if (!shouldShow && node) {
-        editor1.renderer.scroller.removeChild(editor1.renderer.emptyMessageNode);
-        editor1.renderer.emptyMessageNode = null;
-    } else if (shouldShow && !node) {
-        node = editor1.renderer.emptyMessageNode = document.createElement("div");
-        node.textContent = "Write your EASY-MQL query here"
-        node.className = "ace_emptyMessage"
-        node.style.padding = "0 9px"
-        node.style.position = "absolute"
-        node.style.zIndex = 9
-        node.style.opacity = 0.5
-        editor1.renderer.scroller.appendChild(node);
-    }
-}
-editor1.on("input", update);
-setTimeout(update, 100);
+editor1.on("input", () => update(editor1, "Write your EasyMQL query here"));
+setTimeout(() => update(editor1, "Write your EasyMQL query here"), 100);
 
 //------------------------ Editor 2 section -----------------------//
 var editor2 = ace.edit("editor2", {
@@ -59,6 +60,8 @@ var editor2 = ace.edit("editor2", {
 // disable cursor in editor2
 editor2.renderer.$cursorLayer.element.style.display = "none"
 
+editor2.on("input", () => update(editor2, "Result goes here"));
+setTimeout(() => update(editor2, "Result goes here"), 100);
 
 
 function indent2() {

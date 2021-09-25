@@ -179,6 +179,7 @@ body {
   width: 100%;
   padding: 0 8px 0 8px;
   min-height: 0px;
+  margin-bottom: 16px;
 }
 
 @media only screen and (max-width: 790px) {
@@ -348,23 +349,23 @@ body {
 }
 
 #db-dropdown-button {
-  background-color: #FFA726;
+  background-color: sienna;
   color: white;
-  box-shadow: 4px 4px 8px 0px rgba(255, 167, 38,0.4);
+  box-shadow: 4px 4px 8px 0px rgba(160, 82, 45,0.4);
 }
 
 #db-dropdown-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(255, 167, 38,0.4);
+  box-shadow: 4px 4px 16px 0px rgba(160, 82, 45,0.4);
 }
 
 #coll-dropdown-button {
-  background-color: #AB47BC;
+  background-color: slateblue;
   color: white;
-  box-shadow: 4px 4px 8px 0px rgba(171, 71, 188,0.4);
+  box-shadow: 4px 4px 8px 0px rgba(106, 90, 205,0.4);
 }
 
 #coll-dropdown-button:hover {
-  box-shadow: 4px 4px 16px 0px rgba(171, 71, 188,0.4);
+  box-shadow: 4px 4px 16px 0px rgba(106, 90, 205,0.4);
 }
 
 .editor-button-panel {
