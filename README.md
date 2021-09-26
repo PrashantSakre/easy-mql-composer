@@ -9,13 +9,13 @@ Query Composer for EasyMQL
 1. Pull the docker image
 
     ```sh
-    docker pull easy-mql-composer
+    docker pull prashantsakre/easy-mql-composer
     ```
 
 2. Run the container
 
     ```sh
-    docker run -p 5000:5000 easy-mql-composer
+    docker run -p 5000:5000 prashantsakre/easy-mql-composer
     ```
 
 Set `HOST` and `PORT` environment variables to override default host `0.0.0.0` and port `5000` values respectively.
