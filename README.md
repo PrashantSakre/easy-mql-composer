@@ -37,7 +37,7 @@ Set `HOST` and `PORT` environment variables to override default host `0.0.0.0` a
 
     ```sh
     cd easy-mql-webtool
-    pip3 install requirements.txt
+    pip3 install -r requirements.txt
     python3 run.py
     ```
 
