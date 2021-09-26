@@ -2,6 +2,9 @@
 
 Query Composer for EasyMQL
 
+## Documentation
+[EasyMQL](https://vivek-shrikhande.github.io/easy-mql)
+
 ## Installation
 
 ### Docker
